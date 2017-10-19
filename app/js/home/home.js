@@ -1,9 +1,8 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import headerComponent from './components/header.component.js';
-import uicommons from 'openmrs-contrib-uicommons';
 
-let homeModule = angular.module('home', [ uiRouter, 'openmrs-contrib-uicommons'])
+let homeModule = angular.module('home', [ uiRouter])
     .config(($stateProvider, $urlRouterProvider) => {
         "ngInject";
         $urlRouterProvider.otherwise('/');

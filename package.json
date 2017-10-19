@@ -31,8 +31,7 @@
     "angular-resource": "^1.5.11",
     "angular-route": "^1.5.11",
     "angular-translate": "^2.15.2",
-    "angular-ui-router": "^0.3.0",
-    "openmrs-contrib-uicommons": "^0.3.29"
+    "angular-ui-router": "^0.3.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.3",
@@ -71,11 +70,9 @@
     "clean": "rimraf dist && rimraf coverage*",
     "build": "npm run clean && webpack --progress --colors --mode=production --target=web",
     "build:dev": "npm run clean && webpack --progress --colors --mode=dev --target=web",
-    "build:prod": "npm run test && npm run build",
+    "build:prod": "npm run build",
     "build:deploy": "webpack --progress --colors --mode=deploy --target=web",
-    "watch": "webpack --progress --colors --watch --mode=deploy --target=web",
-    "test": "karma start --singleRun=true",
-    "test:debug": "karma start"
+    "watch": "webpack --progress --colors --watch --mode=deploy --target=web"
   },
   "keywords": [
     "OpenMRS",

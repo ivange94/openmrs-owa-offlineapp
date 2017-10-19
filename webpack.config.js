@@ -133,7 +133,7 @@ plugins.push(new BrowserSyncPlugin({
 }));
 
 plugins.push(new CommonsChunkPlugin({
-    name: 'vendor', 
+    name: 'vendor',
     filename: vendorOutputFile
 }));
 
@@ -162,9 +162,9 @@ var webpackConfig = {
 	  app : `${__dirname}/app/js/patientregistration`,
 	  css: `${__dirname}/app/css/patientregistration.css`,
 	  vendor : [
-	        	
-	        	 'angular', 'openmrs-contrib-uicommons', 'angular-animate' 
-                
+
+	        	 'angular', 'angular-animate' 
+
 	            ]
   },
   devtool: devtool,
