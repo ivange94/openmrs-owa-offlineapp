@@ -1,6 +1,8 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import headerComponent from './components/header.component.js';
+import patientSearchComponent from './components/patientSearch.component.js';
+import patientCreateComponent from './components/patientCreate.component.js';
 
 let homeModule = angular.module('home', [ uiRouter])
     .config(($stateProvider, $urlRouterProvider) => {
@@ -22,6 +24,8 @@ let homeModule = angular.module('home', [ uiRouter])
       $locationProvider.hashPrefix('');
     }])
 
-    .component('headerComponent', headerComponent);
+    .component('headerComponent', headerComponent)
+    .component('patientSearch', patientSearchComponent)
+    .component('patientCreate', patientCreateComponent);
 
 export default homeModule;

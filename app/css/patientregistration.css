@@ -1,0 +1,26 @@
+.box {
+    border: 1px solid #1aac9b;
+    font-family: Verdana, 'Lucida Grande', 'Trebuchet MS', Arial, Sans-Serif;
+}
+
+.box-header {
+    border-bottom: 1px solid #1aac9b;
+    background-color: #1aac9b;
+    color: white;
+    padding: 2px;
+    font-weight: bold;
+}
+
+.box-body {
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.e {
+    border: 1px solid cadetblue;
+    padding: 1px;
+}
+
+.required {
+    color: red;
+}
