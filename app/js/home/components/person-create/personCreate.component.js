@@ -1,5 +1,5 @@
-import template from '../personCreate.html';
-import controller from '../controllers/personCreate.controller';
+import template from './personCreate.html';
+import controller from './personCreate.controller';
 
 let personCreateComponent = {
     restrict: 'E',

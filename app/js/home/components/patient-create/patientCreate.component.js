@@ -1,5 +1,5 @@
-import template from '../patientCreate.html';
-import controller from '../controllers/patientCreate.controller';
+import template from './patientCreate.html';
+import controller from './patientCreate.controller';
 
 let patientCreateComponent = {
     restrict: 'E',

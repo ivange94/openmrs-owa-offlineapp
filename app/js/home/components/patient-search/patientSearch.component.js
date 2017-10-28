@@ -1,5 +1,5 @@
-import template from '../patientSearch.html';
-import controller from '../controllers/patientSearch.controller';
+import template from './patientSearch.html';
+import controller from './patientSearch.controller';
 
 let patientSearchComponent = {
     restrict: 'E',

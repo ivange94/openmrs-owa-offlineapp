@@ -1,5 +1,5 @@
-import template from '../header.html';
-import controller from '../controllers/header.controller.js';
+import template from './header.html';
+import controller from './header.controller.js';
 
 let headerComponent = {
   restrict: 'E',

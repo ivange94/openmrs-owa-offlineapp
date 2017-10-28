@@ -1,5 +1,5 @@
-import template from '../formsList.html';
-import controller from '../controllers/formsList.controller';
+import template from './formsList.html';
+import controller from './formsList.controller';
 
 let formsListComponent = {
     restrict: 'E',
