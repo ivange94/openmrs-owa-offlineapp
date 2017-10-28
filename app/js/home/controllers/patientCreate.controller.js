@@ -1,16 +1,11 @@
 class PatientCreateController {
     /* @ngInject */
-    constructor() {
+    constructor($state) {
         var vm = this;
-        vm.person = {
-          "name": "",
-          "gender": "",
-          "age": "",
-          "birthdate": ""
-        };
 
         vm.next = () => {
-          console.log("Hello World!!!");
+            console.log("back button clicked");
+            $state.go('findPatient');
         }
     }
 }

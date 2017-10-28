@@ -40,6 +40,7 @@
     padding: 0;
     overflow: hidden;
     background-color: #1aac9b;
+    padding-left: 25%;
 }
 
 .navbar li {
