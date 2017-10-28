@@ -1,6 +1,6 @@
-class PatientCreateController {
+class PersonCreateController {
     /* @ngInject */
-    constructor() {
+    constructor($state) {
         var vm = this;
         vm.person = {
           "name": "",
@@ -10,9 +10,9 @@ class PatientCreateController {
         };
 
         vm.next = () => {
-          console.log("Hello World!!!");
+          $state.go('createPatient');
         }
     }
 }
 
-export default PatientCreateController;
+export default PersonCreateController;

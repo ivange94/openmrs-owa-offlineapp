@@ -1,0 +1,25 @@
+<div class="box">
+    <div class="box-header">Create Patient</div>
+    <div class="box-body">
+      <form>
+        <table>
+            <tr>
+                <td>Person Name<span class="required">*</span></td>
+                <td><input type="text" style="width: 210px;" class="e" ng-model="vm.person.name"></td>
+            </tr>
+            <tr>
+                <td>Birthdate<span class="required">*</span> </td>
+                <td><input type="date" class="e" ng-model="vm.person.birthdate"> or  Age <input type="number" class="e" style="width: 20%" ng-model="vm.person.age"></td>
+            </tr>
+            <tr>
+                <td>Gender<span class="required">*</span></td>
+                <td><input type="radio" name="gender" value="Male" ng-model="vm.person.gender">Male <input type="radio" name="gender" value="female" ng-model="vm.person.gender">Female</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" ng-click="vm.next()" value="Create Person"/></td>
+            </tr>
+        </table>
+      </form>
+    </div>
+</div>
