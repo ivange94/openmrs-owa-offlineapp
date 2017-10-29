@@ -6,15 +6,19 @@
             <table>
                <tr>
                    <td>Date: </td>
-                   <td><input type="date"></td>
+                   <td><input type="date"> (dd/mm/yyyy)</td>
                </tr>
                <tr>
                    <td>Location: </td>
-                   <td><input type="text"></td>
+                   <td><select name="location" style="width: 170px;">
+                       <option value="unknown">Unknown</option>
+                   </select></td>
                </tr>
                <tr>
                    <td>Provider</td>
-                   <td><input type="text"></td>
+                   <td><select name="provider" style="width: 170px;">
+                       <option value="dr_smith">Dr Smith</option>
+                   </select></td>
                </tr>
             </table>
         </div>
@@ -24,10 +28,10 @@
         <div class="box-body">
             <table>
                 <tr>
-                    <td><strong>Test 1:</strong> Result <input type="text"> Date: <input type="text"></td>
+                    <td><strong>Test 1:</strong> Result <select name="test_1" style="width: 170px;"></select> Date: <input type="date"> (dd/mm/yyyy)</td>
                 </tr>
                 <tr>
-                    <td><strong>Test 2:</strong> Result <input type="text"> Date: <input type="text"></td>
+                    <td><strong>Test 2:</strong> Result <select name="test_2" id="" style="width: 170px;"></select> Date: <input type="date"> (dd/mm/yyyy)</td>
                 </tr>
             </table>
         </div>

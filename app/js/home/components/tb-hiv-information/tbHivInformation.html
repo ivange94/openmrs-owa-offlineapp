@@ -6,15 +6,23 @@
             <table>
                 <tr>
                     <td>Date: </td>
-                    <td><input type="text"></td>
+                    <td><input type="date"> (dd/mm/yyyy)</td>
                 </tr>
                 <tr>
                     <td>Location: </td>
-                    <td><input type="text"></td>
+                    <td>
+                        <select name="location" style="width: 170px">
+                            <option value="uknown">Unknown</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Captured By: </td>
-                    <td><input type="text"></td>
+                    <td>
+                        <select name="captured_by" style="width: 170px">
+                            <option value="dr_smith">Dr Smith</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -22,7 +30,9 @@
     <div class="box">
         <div class="box-header">HIV Serology</div>
         <div class="box-body">
-            <strong>HIV Test:</strong> Result <input type="text"> Date: <input type="text">
+            <strong>HIV Test:</strong> Result <select name="result">
+            <option value="positive">POSITIVE</option>
+            <option value="negative">NEGATIVE</option></select> Date: <input type="date"> (dd/mm/yyyy)
         </div>
     </div>
     <div class="box">
@@ -31,21 +41,27 @@
             <table>
                 <tr>
                     <td>Anti-Retroviral Started:</td>
-                    <td><input type="text"></td>
+                    <td>
+                        <select name="anti_retroviral_started"></select>
+                    </td>
                     <td>Anti-Retroviral Start Date:</td>
-                    <td><input type="date"></td>
+                    <td><input type="date"> (dd/mm/yyyy)</td>
                 </tr>
                 <tr>
                     <td>HIV IPT Started:</td>
-                    <td><input type="text"></td>
+                    <td>
+                        <select name="hiv_ipt_started"></select>
+                    </td>
                     <td>HIV IPT Start Date:</td>
-                    <td><input type="date"></td>
+                    <td><input type="date"> (dd/mm/yyyy)</td>
                 </tr>
                 <tr>
                     <td>HIV CPT Started:</td>
-                    <td><input type="text"></td>
+                    <td>
+                        <select name="hiv_cpt_started"></select>
+                    </td>
                     <td>HIV CPT Start Date:</td>
-                    <td><input type="date"></td>
+                    <td><input type="date"> (dd/mm/yyyy)</td>
                 </tr>
             </table>
         </div>

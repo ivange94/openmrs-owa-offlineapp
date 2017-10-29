@@ -6,15 +6,22 @@
             <table>
                 <tr>
                     <td>Date: </td>
-                    <td><input type="date"></td>
+                    <td><input type="date"> (dd/mm/yyyy)</td>
                 </tr>
                 <tr>
                     <td>Location: </td>
-                    <td><input type="text"></td>
+                    <td><select name="location" style="width: 170px">
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Captured By: </td>
-                    <td><input type="text"></td>
+                    <td>
+                        <select name="captured_by" style="width: 170px">
+                            <option value="dr_smith">Dr Smith</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
         </div>
