@@ -5,7 +5,11 @@ import patientSearchComponent from './components/patient-search/patientSearch.co
 import patientCreateComponent from './components/patient-create/patientCreate.component.js';
 import personCreateComponent from './components/person-create/personCreate.component.js';
 import formsListComponent from './components/forms-list/formsList.component';
-
+import hivTestResultsComponent from './components/hiv-test-results/hivTestResults.component';
+import dstResultsComponent from './components/dst-results/dstResults.component';
+import smearResultsComponent from './components/smear-results/smearResults.component';
+import tbHivInformationComponent from './components/tb-hiv-information/tbHivInformation.component';
+import cultureResultsComponent from "./components/culture-results/cultureResults.component";
 
 let homeModule = angular.module('home', [ uiRouter])
     .config(($stateProvider, $urlRouterProvider) => {
@@ -32,6 +36,30 @@ let homeModule = angular.module('home', [ uiRouter])
             template: require('./components/patient-create/patientCreate.html')
         });
 
+        $stateProvider.state('hivTestResults', {
+            url: '/hivTestResults',
+            template: require('./components/hiv-test-results/hivTestResults.html')
+        });
+
+        $stateProvider.state('dstResults', {
+           url: '/dstResults',
+           template: require('./components/dst-results/dstResults.html')
+        });
+
+        $stateProvider.state('smearResults', {
+            url: '/smearResults',
+            template: require('./components/smear-results/smearResults.html')
+        });
+
+        $stateProvider.state('tbHivInfo', {
+            url: '/tbHivInfo',
+            template: require('./components/tb-hiv-information/tbHivInformation.html')
+        });
+
+        $stateProvider.state('cultureResults', {
+           url: '/cultureResults',
+           template: require('./components/culture-results/cultureResults.html'),
+        });
     })
     .config(['$qProvider', function ($qProvider) {
       $qProvider.errorOnUnhandledRejections(false);
@@ -47,6 +75,11 @@ let homeModule = angular.module('home', [ uiRouter])
     .component('patientSearch', patientSearchComponent)
     .component('patientCreate', patientCreateComponent)
     .component('personCreate', personCreateComponent)
-    .component('formsList', formsListComponent);
+    .component('formsList', formsListComponent)
+    .component('hivTestResults', hivTestResultsComponent)
+    .component('smearResults', smearResultsComponent)
+    .component('dstResults', dstResultsComponent)
+    .component('tbHivInfo', tbHivInformationComponent)
+    .component('cultureResults', cultureResultsComponent);
 
 export default homeModule;
