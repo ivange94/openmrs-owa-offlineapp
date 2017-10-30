@@ -2,6 +2,24 @@
 <div class="box">
     <div class="box-header">Find Patient(s)</div>
     <div class="box-body">
-        Patient Name: <input type="text" style="width: 210px;" class="e">
+        Patient Name: <input type="text" style="width: 210px;" class="e" ng-model="vm.query" ng-change="vm.search()"><br><br>
+        <div ng-hide="vm.hide">
+            <table class="mytable foundPatients">
+                <tr>
+                    <th> Identifier </th>
+                    <th> Name </th>
+                    <th> Gender </th>
+                    <th> Age </th>
+                    <th> Birthdate </th>
+                </tr>
+                <tr ng-repeat="patient in vm.patients | filter: vm.query">
+                    <td> {{patient.identifiers[0].identifier}} </td>
+                    <td> {{patient.person.display}} </td>
+                    <td> {{patient.person.gender}} </td>
+                    <td> {{patient.person.age}} </td>
+                    <td> {{patient.person.birthdate | date}} </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
