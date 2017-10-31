@@ -3,8 +3,7 @@ class PatientCreateController {
     constructor($state) {
         var vm = this;
 
-        vm.next = () => {
-            console.log("back button clicked");
+        vm.back = () => {
             $state.go('findPatient');
         }
     }

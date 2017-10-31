@@ -28,37 +28,37 @@ let homeModule = angular.module('home', [ uiRouter])
 
         $stateProvider.state('listForms', {
             url: '/formsList',
-            template: require('./components/forms-list/formsList.html')
+            template: '<forms-list></forms-list>'
         });
 
         $stateProvider.state('createPatient', {
             url: '/createPatient',
-            template: require('./components/patient-create/patientCreate.html')
+            template: '<patient-create></patient-create>'
         });
 
         $stateProvider.state('hivTestResults', {
             url: '/hivTestResults',
-            template: require('./components/hiv-test-results/hivTestResults.html')
+            template: '<hiv-test-results></hiv-test-results>'
         });
 
         $stateProvider.state('dstResults', {
            url: '/dstResults',
-           template: require('./components/dst-results/dstResults.html')
+           template: '<dst-results></dst-results>'
         });
 
         $stateProvider.state('smearResults', {
             url: '/smearResults',
-            template: require('./components/smear-results/smearResults.html')
+            template: '<smear-results></smear-results>'
         });
 
         $stateProvider.state('tbHivInfo', {
             url: '/tbHivInfo',
-            template: require('./components/tb-hiv-information/tbHivInformation.html')
+            template: '<tb-hiv-information></tb-hiv-information>'
         });
 
         $stateProvider.state('cultureResults', {
            url: '/cultureResults',
-           template: require('./components/culture-results/cultureResults.html'),
+           template: '<culture-results></culture-results>',
         });
     })
     .config(['$qProvider', function ($qProvider) {
