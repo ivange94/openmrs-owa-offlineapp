@@ -10,7 +10,8 @@ class PersonCreateController {
         };
 
         vm.next = () => {
-          $state.go('createPatient');
+
+            $state.go('createPatient', {personData: vm.person});
         }
     }
 }

@@ -12,9 +12,9 @@
             </tr>
             <tr>
               <td>&nbsp;</td>
-              <td><input type="text" class="e" style="width: 210px;"></td>
-              <td><input type="text" class="e" style="width: 210px;"></td>
-              <td><input type="text" class="e" style="width: 210px;"></td>
+              <td><input type="text" class="e" style="width: 210px;" ng-model="vm.patient.person.names[0].givenName"></td>
+              <td><input type="text" class="e" style="width: 210px;" ng-model="vm.patient.person.names[0].middleName"></td>
+              <td><input type="text" class="e" style="width: 210px;" ng-model="vm.patient.person.names[0].familyName"></td>
             </tr>
           </table>
         </td>
@@ -24,15 +24,21 @@
           <table class="identifierTable">
             <tr>
               <td><strong>ID Number(s)</strong></td>
-              <td>Identifier<span class="required"></span></td>
-              <td>Identifier Type</td>
-              <td>Identifier Location</td>
+              <td>Identifier<span class="required">*</span></td>
+              <td>Identifier Type <span class="required">*</span></td>
+              <td>Identifier Location <span class="required">*</span></td>
             </tr>
             <tr>
               <td>&nbsp;</td>
-              <td><input type="text" style="width: 210px;" class="e"></td>
-              <td><input type="text" style="width: 210px;" class="e"></td>
-              <td><input type="text" style="width: 210px;" class="e"></td>
+              <td><input type="text" style="width: 180px;" class="e" ng-model="vm.patient.identifiers[0].identifier"></td>
+              <td><select ng-model="vm.patient.identifiers[0].identifierType">
+                <option value="">-- Select an Identifier Type --</option>
+                <option ng-repeat="identifier in vm.identifiers" value="{{identifier.uuid}}">{{identifier.display}}</option>
+              </select></td>
+              <td><select ng-model="vm.patient.identifiers[0].location">
+                <option value="">-- Select Identifier Location --</option>
+                <option ng-repeat="location in vm.locations" value="{{location.uuid}}">{{location.display}}</option>
+              </select></td>
             </tr>
           </table>
         </td>
@@ -48,9 +54,9 @@
             </tr>
             <tr>
               <td>&nbsp;</td>
-              <td><input type="radio" name="gender">Male <input type="radio" name="gender">Female</td>
-              <td><input type="text" class="e"></td>
-              <td><input type="date" class="e"></td>
+              <td><input type="radio" name="gender" value="M" ng-model="vm.patient.person.gender">Male <input type="radio" name="gender" value="F" ng-model="vm.patient.person.gender">Female</td>
+              <td><input type="text" class="e" ng-model="vm.patient.person.age"></td>
+              <td><input type="date" class="e" ng-model="vm.patient.person.birthdate"></td>
             </tr>
           </table>
         </td>
@@ -65,15 +71,15 @@
             </tr>
             <tr>
               <td>&nbsp;</td>
-              <td><input type="text" class="e" width="210px"></td>
-              <td><input type="text" class="e" width="210px"></td>
+              <td><input type="text" class="e" width="210px" ng-model="vm.patient.person.addresses[0].address1"></td>
+              <td><input type="text" class="e" width="210px" ng-model="vm.patient.person.addresses[0].address2"></td>
             </tr>
           </table>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="submit" value="Save"/><input type="submit" value="Back" ng-click="vm.back()"/>
+          <input type="submit" value="Save" ng-click="vm.createPatient()"/>
         </td>
       </tr>
     </table>

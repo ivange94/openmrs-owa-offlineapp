@@ -33,7 +33,10 @@ let homeModule = angular.module('home', [ uiRouter])
 
         $stateProvider.state('createPatient', {
             url: '/createPatient',
-            template: '<patient-create></patient-create>'
+            template: '<patient-create></patient-create>',
+            params: {
+                personData: null
+            }
         });
 
         $stateProvider.state('hivTestResults', {
