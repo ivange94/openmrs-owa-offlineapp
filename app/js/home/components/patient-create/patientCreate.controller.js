@@ -57,7 +57,7 @@ class PatientCreateController {
         vm.createPatient = () => {
             $http.post("/openmrs/ws/rest/v1/patient", JSON.stringify(vm.patient))
                 .then(function(response) {
-                    console.log(response);
+                    $state.go('patients', {patientId: response.data.uuid, patientCreated: true});
                 });
         };
     }

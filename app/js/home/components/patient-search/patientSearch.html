@@ -11,6 +11,7 @@
                     <th> Gender </th>
                     <th> Age </th>
                     <th> Birthdate </th>
+                    <th> Action</th>
                 </tr>
                 <tr ng-repeat="patient in vm.patients | filter: vm.query">
                     <td> {{patient.identifiers[0].identifier}} </td>
@@ -18,6 +19,7 @@
                     <td> {{patient.person.gender}} </td>
                     <td> {{patient.person.age}} </td>
                     <td> {{patient.person.birthdate | date}} </td>
+                    <td><a href="" ui-sref="patients({patientId: patient.uuid})">View</a></td>
                 </tr>
             </table>
         </div>

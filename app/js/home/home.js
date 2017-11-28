@@ -10,6 +10,7 @@ import dstResultsComponent from './components/dst-results/dstResults.component';
 import smearResultsComponent from './components/smear-results/smearResults.component';
 import tbHivInformationComponent from './components/tb-hiv-information/tbHivInformation.component';
 import cultureResultsComponent from "./components/culture-results/cultureResults.component";
+import patientsDetailComponent from './components/patients-detail/patientsDetail.component';
 
 let homeModule = angular.module('home', [ uiRouter])
     .config(($stateProvider, $urlRouterProvider) => {
@@ -63,6 +64,13 @@ let homeModule = angular.module('home', [ uiRouter])
            url: '/cultureResults',
            template: '<culture-results></culture-results>',
         });
+
+        $stateProvider.state('patients', {
+            url: '/patients/{patientId}',
+            template: '<patients-detail></patients-detail>',
+        });
+
+
     })
     .config(['$qProvider', function ($qProvider) {
       $qProvider.errorOnUnhandledRejections(false);
@@ -83,6 +91,7 @@ let homeModule = angular.module('home', [ uiRouter])
     .component('smearResults', smearResultsComponent)
     .component('dstResults', dstResultsComponent)
     .component('tbHivInfo', tbHivInformationComponent)
-    .component('cultureResults', cultureResultsComponent);
+    .component('cultureResults', cultureResultsComponent)
+    .component('patientsDetail', patientsDetailComponent);
 
 export default homeModule;
