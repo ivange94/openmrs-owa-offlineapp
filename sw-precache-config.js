@@ -10,7 +10,7 @@ module.exports = {
     ],
     runtimeCaching: [
         {
-            urlPattern: /^http:\/\/localhost:8080\/openmrs\/ws\/rest\/v1/,
+            urlPattern: /\/openmrs\/ws\/rest\/v1/,
             handler: 'networkFirst'
         }
     ]
