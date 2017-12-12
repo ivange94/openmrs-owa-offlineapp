@@ -1,3 +1,5 @@
+import localforage from 'localforage';
+
 class PatientCreateController {
     /* @ngInject */
     constructor($state, $http) {
@@ -30,6 +32,8 @@ class PatientCreateController {
         vm.identifiers = [];
         vm.locations = [];
 
+        vm.serverIsAvailable = false;
+
         $http.get("/openmrs/ws/rest/v1/patientidentifiertype")
             .then(function(response) {
                 vm.identifiers = response.data.results;
@@ -55,11 +59,54 @@ class PatientCreateController {
         vm.patient.person.birthdate = $state.params.personData.birthdate;
 
         vm.createPatient = () => {
-            $http.post("/openmrs/ws/rest/v1/patient", JSON.stringify(vm.patient))
-                .then(function(response) {
-                    $state.go('patients', {patientId: response.data.uuid, patientCreated: true});
+            console.log("Creating a patient");
+            checkServerStatus();
+            if (vm.serverIsAvailable) {
+                $http.post("/openmrs/ws/rest/v1/patient", JSON.stringify(vm.patient))
+                    .then(function(response) {
+                        $state.go('patients', {patientId: response.data.uuid, patientCreated: true});
+                    }).catch(function (err) {
+                        console.log("Error: ", err);
+                    });
+            } else {
+                alert("You don't have internet connection. You're data will be saved offline");
+                localforage.getItem("queue").then(function(queue) {
+                    if (queue === null) {
+                        localforage.setItem("queue", []).then(function (queue) {
+                            console.log("Initialized queue!!!");
+                            queue.push({url: "/openmrs/ws/rest/v1/patient", data: JSON.stringify(vm.patient)});
+                            localforage.setItem("queue", queue);
+                        });
+                    } else {
+                        queue.push({url: "/openmrs/ws/rest/v1/patient", data: JSON.stringify(vm.patient)});
+                        localforage.setItem("queue", queue).then(function (queue) {
+                            console.log("Queue updated!!!", queue);
+                        });
+                    }
+                }).catch(function (err) {
+                    console.log(err);
                 });
+            }
         };
+
+        var checkServerStatus = function () {
+            /**
+            var img = document.body.appendChild(document.createElement("img"));
+            img.onload = function()
+            {
+                vm.serverIsAvailable = true;
+            };
+            img.onerror = function()
+            {
+                vm.serverIsAvailable = false;
+            };
+            img.src = document.location.origin + "/openmrs/owa/dist/ping.png?" + Date.now();
+             */
+
+            vm.serverIsAvailable = navigator.onLine;
+        }
+
+
     }
 }
 
