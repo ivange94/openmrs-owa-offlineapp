@@ -59,7 +59,6 @@ class PatientCreateController {
         vm.patient.person.birthdate = $state.params.personData.birthdate;
 
         vm.createPatient = () => {
-            console.log("Creating a patient");
             checkServerStatus();
             if (vm.serverIsAvailable) {
                 $http.post("/openmrs/ws/rest/v1/patient", JSON.stringify(vm.patient))
@@ -73,7 +72,6 @@ class PatientCreateController {
                 localforage.getItem("queue").then(function(queue) {
                     if (queue === null) {
                         localforage.setItem("queue", []).then(function (queue) {
-                            console.log("Initialized queue!!!");
                             queue.push({url: "/openmrs/ws/rest/v1/patient", data: JSON.stringify(vm.patient)});
                             localforage.setItem("queue", queue);
                         });
@@ -81,6 +79,8 @@ class PatientCreateController {
                         queue.push({url: "/openmrs/ws/rest/v1/patient", data: JSON.stringify(vm.patient)});
                         localforage.setItem("queue", queue).then(function (queue) {
                             console.log("Queue updated!!!", queue);
+                        }).catch(function (err) {
+                            console.log("Error updating queue", err);
                         });
                     }
                 }).catch(function (err) {
