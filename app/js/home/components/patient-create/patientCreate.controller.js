@@ -86,6 +86,14 @@ class PatientCreateController {
                 }).catch(function (err) {
                     console.log(err);
                 });
+
+                navigator.serviceWorker.ready.then(function (reg) {
+                    return reg.sync.register('myOneOffSync');
+                }).then( () => {
+                    console.log("Sync registered");
+                }).catch(err => {
+                    console.log("Error registering sync", err);
+                });
             }
         };
 
