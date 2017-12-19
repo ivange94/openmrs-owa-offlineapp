@@ -155,10 +155,6 @@ plugins.push(new CopyWebpackPlugin([{
     from: './app/ping.png'
 }]));
 
-plugins.push(new CopyWebpackPlugin([{
-    from: './app/offline.js'
-}]));
-
  plugins.push(new ngAnnotatePlugin({
   add: true,
   map: false

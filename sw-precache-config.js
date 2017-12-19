@@ -13,6 +13,5 @@ module.exports = {
             urlPattern: /\/openmrs\/ws\/rest\/v1/,
             handler: 'networkFirst'
         }
-    ],
-    importScripts: ["offline.js"]
+    ]
 };
