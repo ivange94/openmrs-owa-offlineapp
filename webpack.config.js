@@ -147,12 +147,16 @@ plugins.push(new CopyWebpackPlugin([{
 }]));
 
 plugins.push(new CopyWebpackPlugin([{
-    from: './app/img/omrs-button.png',
-    to: 'img/omrs-button.png'
+    from: './app/localforage.min.js'
 }]));
 
 plugins.push(new CopyWebpackPlugin([{
-    from: './app/ping.png'
+    from: './app/offline.js'
+}]));
+
+plugins.push(new CopyWebpackPlugin([{
+    from: './app/img/omrs-button.png',
+    to: 'img/omrs-button.png'
 }]));
 
  plugins.push(new ngAnnotatePlugin({
