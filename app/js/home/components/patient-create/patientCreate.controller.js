@@ -72,11 +72,11 @@ class PatientCreateController {
                 localforage.getItem("queue").then(function(queue) {
                     if (queue === null) {
                         localforage.setItem("queue", []).then(function (queue) {
-                            queue.push({url: "/openmrs/ws/rest/v1/patient", data: JSON.stringify(vm.patient)});
+                            queue.push({url: "/openmrs/ws/rest/v1/patient", data: vm.patient});
                             localforage.setItem("queue", queue);
                         });
                     } else {
-                        queue.push({url: "/openmrs/ws/rest/v1/patient", data: JSON.stringify(vm.patient)});
+                        queue.push({url: "/openmrs/ws/rest/v1/patient", data: vm.patient});
                         localforage.setItem("queue", queue).then(function (queue) {
                             console.log("Queue updated!!!", queue);
                         }).catch(function (err) {
