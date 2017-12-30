@@ -1,10 +1,10 @@
 {
-  "name": "patientregistration",
+  "name": "offlineapp",
   "version": "0.1.0",
-  "description": "OWA for offline patient registration",
+  "description": "Offline app providing offline patient registration and some form submissions",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivange94/openmrs-owa-patientregistration"
+    "url": "https://github.com/ivange94/openmrs-owa-offlineapp"
   },
   "engines": {
     "npm": "^4.0.5",

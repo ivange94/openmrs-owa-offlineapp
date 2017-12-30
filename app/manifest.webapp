@@ -1,14 +1,14 @@
 {
   "version": "0.1.0",
-  "name": "Patient Registration",
-  "description": "OWA for offline patient registration",
+  "name": "Offline App",
+  "description": "Offline app providing offline patient registration and some form submissions offline",
   "launch_path": "index.html",
   "icons": {
     "48": "/img/omrs-button.png"
   },
   "developer": {
     "name": "ivange94",
-    "url": "https://github.com/ivange94/openmrs-owa-patientregistration"
+    "url": "https://github.com/ivange94/openmrs-owa-offlineapp"
   },
   "default_locale": "en",
     "activities": {
