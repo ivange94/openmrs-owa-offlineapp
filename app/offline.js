@@ -5,7 +5,8 @@ self.addEventListener('sync', function (event) {
         event.waitUntil(
             localforage.getItem("queue").then((queue) => {
                 return Promise.all(queue.map(function (request) {
-                    console.log(request.data);
+                    console.log("Update");
+                    console.log(JSON.stringify(request.data));
                     return fetch(request.url, {
                         method: 'POST',
                         body: JSON.stringify(request.data),

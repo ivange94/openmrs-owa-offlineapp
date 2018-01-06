@@ -1,0 +1,20 @@
+<div class="box">
+    <div class="body">
+        <table class="mytable">
+            <theader>
+                <tr>
+                    <th>Form</th>
+                    <th>Entity</th>
+                    <th>Action</th>
+                </tr>
+            </theader>
+            <tbody>
+                <tr ng-repeat="request in vm.queue">
+                    <td>{{request.form}}
+                    <td>{{request.entity}}</td>
+                    <td><!--<button>View</button>&nbsp;--><button ng-click="vm.cancel()">Cancel</button>&nbsp;<button ng-click="vm.sync(request)">Sync</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

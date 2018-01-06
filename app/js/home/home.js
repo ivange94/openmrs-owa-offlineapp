@@ -11,6 +11,7 @@ import smearResultsComponent from './components/smear-results/smearResults.compo
 import tbHivInformationComponent from './components/tb-hiv-information/tbHivInformation.component';
 import cultureResultsComponent from "./components/culture-results/cultureResults.component";
 import patientsDetailComponent from './components/patients-detail/patientsDetail.component';
+import syncDashboardComponent from './components/sync-dashboard/syncDashboard.component';
 
 let homeModule = angular.module('home', [ uiRouter])
     .config(($stateProvider, $urlRouterProvider) => {
@@ -70,6 +71,11 @@ let homeModule = angular.module('home', [ uiRouter])
             template: '<patients-detail></patients-detail>',
         });
 
+        $stateProvider.state('sync', {
+            url: '/sync',
+            template: '<sync-dashboard></sync-dashboard>',
+        });
+
 
     })
     .config(['$qProvider', function ($qProvider) {
@@ -92,6 +98,7 @@ let homeModule = angular.module('home', [ uiRouter])
     .component('dstResults', dstResultsComponent)
     .component('tbHivInfo', tbHivInformationComponent)
     .component('cultureResults', cultureResultsComponent)
-    .component('patientsDetail', patientsDetailComponent);
+    .component('patientsDetail', patientsDetailComponent)
+    .component('syncDashboard', syncDashboardComponent);
 
 export default homeModule;
