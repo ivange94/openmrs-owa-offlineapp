@@ -13,12 +13,12 @@ class SyncDashboardController {
             }).catch(err => {
                 console.log("Error syncing.", err);
             });
-        }
+        };
 
         vm.cancel = (index) => {
             vm.queue.splice(index, 1);
             updateOfflineStorage();
-        }
+        };
 
         vm.refresh = () => {
             localforage.getItem("queue").then((queue) => {
@@ -27,7 +27,7 @@ class SyncDashboardController {
             }).catch((err) => {
                 console.log(err);
             });
-        }
+        };
 
         vm.refresh();
 

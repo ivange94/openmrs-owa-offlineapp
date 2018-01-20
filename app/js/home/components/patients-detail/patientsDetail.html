@@ -1,10 +1,309 @@
 <div ng-show="vm.patientCreated" class="patientCreated">Patient Created</div>
 <div class="box">
-    <div class="box-header">{{vm.patient.person.preferredName.display}} <span class="patientIdentifier">{{vm.patient.identifiers[0].display}}</span> <br><br> {{vm.patient.person.age}} ({{vm.patient.person.birthdate | date}})</div>
-    <div class="box-body"></div>
-</div>
-<div class="box">
-    <div class="box-header">
+    <div class="box-header">{{vm.patient.person.preferredName.display}} <span class="patientIdentifier">{{vm.patient.identifiers[0].display}}</span> <br><br> {{vm.patient.person.age}}yr(s) ({{vm.patient.person.birthdate | date}})</div>
+    <div class="box-body">
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" ng-repeat="item in vm.menuItems" ng-click="vm.showTab(item)" ng-class="{active: vm.activeMenu === item}">{{item}}</button>
+        </div>
 
+        <!-- Tab content -->
+        <div id="Demographics" class="tabcontent">
+            <div class="box tabbox">
+                <div class="box-header">Patient</div>
+                <div class="box-body">
+                    <h3>Names</h3>
+                    <p>{{vm.patient.person.preferredName.display}}</p>
+                </div>
+            </div>
+            <br>
+            <div class="box tabbox">
+                <div class="box-header">Addresses</div>
+                <div class="box-body">
+                </div>
+            </div>
+        </div>
+
+        <div id="Forms" class="tabcontent">
+            <div id="formSelectMenu">
+                <h3>Select Form</h3>
+                <select name="htmlForm" id="htmlForm">
+                    <option value="0">Select a form</option>
+                    <option value="1"><a href="">HIV Test Results</a></option>
+                    <option value="2"><a href="">DST Test Results</a></option>
+                    <option value="3"><a href="">Smear Result</a></option>
+                    <option value="4"><a href="">TB HIV Information</a></option>
+                    <option value="5"><a href="">Culture Results</a></option>
+                </select>
+                <br><br>
+                <button ng-click="vm.showSelectedForm()">Continue</button>
+            </div>
+            <div class="hiv-test-results" id="1" style="display: none">
+                <h2>HIV Test Result</h2>
+                <div class="box">
+                    <div class="box-header">Details</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td>Date: </td>
+                                <td><input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                            <tr>
+                                <td>Location: </td>
+                                <td><select name="location" style="width: 170px;">
+                                    <option value="unknown">Unknown</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td>Provider</td>
+                                <td><select name="provider" style="width: 170px;">
+                                    <option value="dr_smith">Dr Smith</option>
+                                </select></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">HIV Serology</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td><strong>Test 1:</strong> Result <select name="test_1" style="width: 170px;"></select> Date: <input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Test 2:</strong> Result <select name="test_2" id="" style="width: 170px;"></select> Date: <input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <button ng-click="vm.cancelFormEntry()">Cancel</button><button>Enter Form</button>
+            </div>
+            <div class="dst-results" id="2" style="display: none">
+                <h2>DST Results</h2>
+                <div class="box">
+                    <div class="box-header">General Information</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td>Date: </td>
+                                <td><input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                            <tr>
+                                <td>Location: </td>
+                                <td><select name="location" style="width: 170px">
+                                    <option value="unknown">Unknown</option>
+                                </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Captured By: </td>
+                                <td>
+                                    <select name="captured_by" style="width: 170px">
+                                        <option value="dr_smith">Dr Smith</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">DST Details</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td>RSENSITIVE <input type="checkbox"> Resistant <input type="checkbox"> Sensitive</td>
+                            </tr>
+                            <tr>
+                                <td>HSENSITIVE <input type="checkbox"> Resistant <input type="checkbox"> Sensitive</td>
+                            </tr>
+                            <tr>
+                                <td>ESENSITIVE <input type="checkbox"> Resistant <input type="checkbox"> Sensitive</td>
+                            </tr>
+                            <tr>
+                                <td>SSENSITIVE <input type="checkbox"> Resistant <input type="checkbox"> Sensitive</td>
+                            </tr>
+                            <tr>
+                                <td>ZSENSITIVE <input type="checkbox"> Resistant <input type="checkbox"> Sensitive</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <button ng-click="vm.cancelFormEntry()">Cancel</button><input type="submit" value="Enter Form">
+            </div>
+            <div class="smear-results" id="3" style="display: none">
+                <h2>Smear Results for a New Specimen</h2>
+                <div class="box">
+                    <div class="box-header">Add Smear Results for a New Specimen</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td>Date: </td>
+                                <td><input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                            <tr>
+                                <td>Location: </td>
+                                <td>
+                                    <select name="location" style="width: 170px">
+                                        <option value="unknown">Unknown</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Captured By: </td>
+                                <td>
+                                    <select name="captured_by" style="width: 170px">
+                                        <option value="dr_smith">Dr Smith</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">Specimen details</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td>Sample ID</td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>Sample Type: </td>
+                                <td>
+                                    <select name="sample_type" style="width: 170px">
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Appearance: </td>
+                                <td>
+                                    <select name="appearance" style="width: 170px">
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Result: </td>
+                                <td>
+                                    <select name="result" style="width: 170px">
+
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <button ng-click="vm.cancelFormEntry()">Cancel</button><input type="submit" value="Enter Form">
+            </div>
+            <div class="tb-hiv-info" id="4" style="display: none">
+                <h2>TB/HIV Information</h2>
+                <div class="box">
+                    <div class="box-header">General</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td>Date: </td>
+                                <td><input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                            <tr>
+                                <td>Location: </td>
+                                <td>
+                                    <select name="location" style="width: 170px">
+                                        <option value="uknown">Unknown</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Captured By: </td>
+                                <td>
+                                    <select name="captured_by" style="width: 170px">
+                                        <option value="dr_smith">Dr Smith</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">HIV Serology</div>
+                    <div class="box-body">
+                        <strong>HIV Test:</strong> Result <select name="result">
+                        <option value="positive">POSITIVE</option>
+                        <option value="negative">NEGATIVE</option></select> Date: <input type="date"> (dd/mm/yyyy)
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">Therapy Details</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td>Anti-Retroviral Started:</td>
+                                <td>
+                                    <select name="anti_retroviral_started"></select>
+                                </td>
+                                <td>Anti-Retroviral Start Date:</td>
+                                <td><input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                            <tr>
+                                <td>HIV IPT Started:</td>
+                                <td>
+                                    <select name="hiv_ipt_started"></select>
+                                </td>
+                                <td>HIV IPT Start Date:</td>
+                                <td><input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                            <tr>
+                                <td>HIV CPT Started:</td>
+                                <td>
+                                    <select name="hiv_cpt_started"></select>
+                                </td>
+                                <td>HIV CPT Start Date:</td>
+                                <td><input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <button ng-click="vm.cancelFormEntry()">Cancel</button><input type="submit" value="Enter Form">
+            </div>
+            <div class="culture-results" id="5" style="display: none">
+                <h2>Culture Results</h2>
+                <div class="box">
+                    <div class="box-header">Add a Culture Result for a New Specimen</div>
+                    <div class="box-body">
+                        <table>
+                            <tr>
+                                <td>Date: </td>
+                                <td><input type="date"> (dd/mm/yyyy)</td>
+                            </tr>
+                            <tr>
+                                <td>Location: </td>
+                                <td>
+                                    <select name="location">
+                                        <option value="unknown">Unknown</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Captured By: </td>
+                                <td>
+                                    <select name="captured_by">
+                                        <option value="dr_smith">Dr Smith</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">Culture details</div>
+                    <div class="box-body">
+                        Result:
+                        <select name="result" style="width: 170px"></select>
+                    </div>
+                </div>
+                <button ng-click="vm.cancelFormEntry()">Cancel</button><button>Enter Form</button>
+            </div>
+        </div>
     </div>
 </div>
