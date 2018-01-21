@@ -5,6 +5,8 @@ class SyncDashboardController {
     constructor($http, $state) {
         var vm = this;
 
+        vm.queue = [];
+
         vm.sync = (request, index) => {
             $http.post(request.url, JSON.stringify(request.data)).then(response => {
                 vm.queue.splice(index, 1);
@@ -20,16 +22,13 @@ class SyncDashboardController {
             updateOfflineStorage();
         };
 
-        vm.refresh = () => {
+        vm.$onInit = function () {
             localforage.getItem("queue").then((queue) => {
                 vm.queue = queue;
-                console.log(vm.queue);
             }).catch((err) => {
                 console.log(err);
             });
-        };
-
-        vm.refresh();
+        }
 
         var updateOfflineStorage = function() {
             localforage.setItem("queue", vm.queue).then(queue => {

@@ -274,21 +274,21 @@
                         <table>
                             <tr>
                                 <td>Date: </td>
-                                <td><input type="date"> (dd/mm/yyyy)</td>
+                                <td><input type="date" ng-model="vm.cultureresult.encounterDate"> (dd/mm/yyyy)</td>
                             </tr>
                             <tr>
                                 <td>Location: </td>
                                 <td>
-                                    <select name="location">
-                                        <option value="unknown">Unknown</option>
+                                    <select name="location" ng-model="vm.cultureresult.encounterLocation">
+                                        <option ng-repeat="location in vm.locations" value="{{location.uuid}}">{{location.display}}</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Captured By: </td>
                                 <td>
-                                    <select name="captured_by">
-                                        <option value="dr_smith">Dr Smith</option>
+                                    <select name="captured_by" ng-model="vm.cultureresult.encounterProvider">
+                                        <option ng-repeat="provider in vm.providers" value="{{provider.uuid}}">{{provider.person.display}}</option>
                                     </select>
                                 </td>
                             </tr>
@@ -302,7 +302,7 @@
                         <select name="result" style="width: 170px"></select>
                     </div>
                 </div>
-                <button ng-click="vm.cancelFormEntry()">Cancel</button><button>Enter Form</button>
+                <button ng-click="vm.cancelFormEntry()">Cancel</button><button ng-click="vm.saveCultureResult()">Enter Form</button>
             </div>
         </div>
     </div>

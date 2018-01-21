@@ -5,18 +5,34 @@ class PatientsDetailComponent {
        vm.patient = {};
        $http.get("/openmrs/ws/rest/v1/patient/" + $stateParams.patientId)
            .then(function(response) {
-              console.log(response);
               vm.patient = response.data;
            });
 
        vm.patientCreated = false;
-       console.log($stateParams.patientCreated);
 
        vm.menuItems = ["Demographics", "Forms"];
 
        vm.activeMenu = vm.menuItems[0];
 
        vm.selectedFormId = '0';
+
+       vm.cultureresult = {};
+
+       vm.cultureresult.patient = vm.patient.uuid;
+
+       vm.locations = [];
+
+       vm.providers = [];
+
+       vm.$onInit = function () {
+           $http.get("/openmrs/ws/rest/v1/location").then(res => {
+               vm.locations = res.data.results;
+           });
+
+           $http.get("/openmrs/ws/rest/v1/provider?v=full").then(res => {
+               vm.providers = res.data.results;
+           });
+       };
 
        document.getElementById(vm.activeMenu).style.display = "block";
 
@@ -56,6 +72,15 @@ class PatientsDetailComponent {
         vm.cancelFormEntry = () => {
             document.getElementById(vm.selectedFormId).style.display = "none";
             document.getElementById('formSelectMenu').style.display = "block";
+        }
+
+        vm.saveCultureResult = () => {
+            vm.cultureresult.patient = vm.patient.uuid;
+            $http.post("/openmrs/ws/rest/v1/cultureresult", JSON.stringify(vm.cultureresult)).then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            })
         }
     }
 }
