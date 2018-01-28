@@ -11,9 +11,12 @@ import smearResultsComponent from './components/smear-results/smearResults.compo
 import tbHivInformationComponent from './components/tb-hiv-information/tbHivInformation.component';
 import cultureResultsComponent from "./components/culture-results/cultureResults.component";
 import patientsDetailComponent from './components/patients-detail/patientsDetail.component';
-import syncDashboardComponent from './components/sync-dashboard/syncDashboard.component';
 
 import dataAccessService from './services/dataAccess.service';
+
+import SyncDashboardController from './components/sync-dashboard/syncDashboard.controller';
+
+import localforage from 'localforage';
 
 let homeModule = angular.module('home', [ uiRouter])
     .config(($stateProvider, $urlRouterProvider) => {
@@ -74,11 +77,12 @@ let homeModule = angular.module('home', [ uiRouter])
         });
 
         $stateProvider.state('sync', {
-            url: '/sync',
-            template: '<sync-dashboard></sync-dashboard>',
+            url: '/syncDashboard',
+            template: require('./components/sync-dashboard/syncDashboard.html'),
+            controller: SyncDashboardController,
+            controllerAs: 'vm',
+            resolve: SyncDashboardController.resolve
         });
-
-
     })
     .config(['$qProvider', function ($qProvider) {
       $qProvider.errorOnUnhandledRejections(false);
@@ -92,6 +96,8 @@ let homeModule = angular.module('home', [ uiRouter])
 
     .factory('dataAccessService', dataAccessService)
 
+    .controller('SyncDashboardController', SyncDashboardController)
+
     .component('headerComponent', headerComponent)
     .component('patientSearch', patientSearchComponent)
     .component('patientCreate', patientCreateComponent)
@@ -102,7 +108,6 @@ let homeModule = angular.module('home', [ uiRouter])
     .component('dstResults', dstResultsComponent)
     .component('tbHivInfo', tbHivInformationComponent)
     .component('cultureResults', cultureResultsComponent)
-    .component('patientsDetail', patientsDetailComponent)
-    .component('syncDashboard', syncDashboardComponent);
+    .component('patientsDetail', patientsDetailComponent);
 
 export default homeModule;
