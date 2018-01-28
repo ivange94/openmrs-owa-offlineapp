@@ -4,7 +4,6 @@
         <table class="mytable">
             <theader>
                 <tr>
-                    <th>Patient ID</th>
                     <th>Patient</th>
                     <th>Form</th>
                     <th>Action</th>
@@ -12,7 +11,6 @@
             </theader>
             <tbody>
                 <tr ng-repeat="request in vm.queue track by $index">
-                    <td>{{request.data.identifiers[0].identifier}}</td>
                     <td>{{request.display}}</td>
                     <td>{{request.form}}
                     <td><!--<button>View</button>&nbsp;--><button ng-click="vm.cancel($index)">Cancel</button>&nbsp;<button ng-click="vm.sync(request, $index)">Sync</button></td>

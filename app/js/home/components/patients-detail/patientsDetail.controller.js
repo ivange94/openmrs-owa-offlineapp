@@ -1,7 +1,8 @@
 class PatientsDetailComponent {
-    constructor($stateParams, $http, $state) {
+    constructor($stateParams, $http, dataAccessService) {
        var vm = this;
 
+       console.log(dataAccessService);
        vm.patient = {};
        $http.get("/openmrs/ws/rest/v1/patient/" + $stateParams.patientId)
            .then(function(response) {
@@ -23,6 +24,10 @@ class PatientsDetailComponent {
        vm.locations = [];
 
        vm.providers = [];
+
+       const CULTURE_RESULT_URL = "/openmrs/ws/rest/v1/cultureresult";
+
+       const CULTURE_RESULT_FORM = "Culture Result Form";
 
        vm.$onInit = function () {
            $http.get("/openmrs/ws/rest/v1/location").then(res => {
@@ -74,13 +79,21 @@ class PatientsDetailComponent {
             document.getElementById('formSelectMenu').style.display = "block";
         }
 
+        var serverIsAvailable = function () {
+            return navigator.onLine;
+        };
+
         vm.saveCultureResult = () => {
+            forceSetPatientOnCultureResultObject();
+            dataAccessService.create(CULTURE_RESULT_URL, vm.cultureresult, CULTURE_RESULT_FORM, {patientName: getPatientName()});
+        }
+
+        function forceSetPatientOnCultureResultObject() {
             vm.cultureresult.patient = vm.patient.uuid;
-            $http.post("/openmrs/ws/rest/v1/cultureresult", JSON.stringify(vm.cultureresult)).then(res => {
-                console.log(res);
-            }).catch(err => {
-                console.log(err);
-            })
+        }
+
+        function getPatientName() {
+            return vm.patient.person.preferredName.display;
         }
     }
 }

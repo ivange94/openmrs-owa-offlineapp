@@ -299,7 +299,7 @@
                     <div class="box-header">Culture details</div>
                     <div class="box-body">
                         Result:
-                        <select name="result" style="width: 170px"></select>
+                        <input name="result" style="width: 170px" ng-model="vm.cultureresult.result"/>
                     </div>
                 </div>
                 <button ng-click="vm.cancelFormEntry()">Cancel</button><button ng-click="vm.saveCultureResult()">Enter Form</button>

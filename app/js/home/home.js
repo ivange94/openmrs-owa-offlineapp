@@ -13,6 +13,8 @@ import cultureResultsComponent from "./components/culture-results/cultureResults
 import patientsDetailComponent from './components/patients-detail/patientsDetail.component';
 import syncDashboardComponent from './components/sync-dashboard/syncDashboard.component';
 
+import dataAccessService from './services/dataAccess.service';
+
 let homeModule = angular.module('home', [ uiRouter])
     .config(($stateProvider, $urlRouterProvider) => {
         "ngInject";
@@ -87,6 +89,8 @@ let homeModule = angular.module('home', [ uiRouter])
     .config(['$locationProvider', function($locationProvider) {
       $locationProvider.hashPrefix('');
     }])
+
+    .factory('dataAccessService', dataAccessService)
 
     .component('headerComponent', headerComponent)
     .component('patientSearch', patientSearchComponent)
