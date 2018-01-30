@@ -14,7 +14,7 @@ export default function SyncDashboardController(queue, $http, $window) {
             if (request.form === PATIENT_CREATE_FORM) {
                 $window.location.href = "/openmrs/patientDashboard.form?patientId=" + res.data.uuid;
             } else {
-                $window.location.href = "/openmrs/module/htmlformentry/htmlFormEntry.form?encounterId=" + res.data.uuid;
+                $window.location.href = "/openmrs/module/htmlformentry/htmlFormEntry.form?encounterId=" + res.data.encounter.uuid;
             }
         })
     }

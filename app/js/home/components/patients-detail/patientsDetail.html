@@ -299,7 +299,9 @@
                     <div class="box-header">Culture details</div>
                     <div class="box-body">
                         Result:
-                        <input name="result" style="width: 170px" ng-model="vm.cultureresult.result"/>
+                        <select name="result" ng-model="vm.cultureresult.result">
+                            <option ng-repeat="concept in vm.cultureResultAnswerConcepts" value="{{concept.id}}">{{concept.name}}</option>
+                        </select>
                     </div>
                 </div>
                 <button ng-click="vm.cancelFormEntry()">Cancel</button><button ng-click="vm.saveCultureResult()">Enter Form</button>

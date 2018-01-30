@@ -25,6 +25,18 @@ class PatientsDetailComponent {
 
        vm.providers = [];
 
+        vm.cultureResultAnswerConcepts = [
+            {id: 6, name: "CONTAMINATED"},
+            {id: 4, name: "NEGATIVE"},
+            {id: 5, name: "POSITIVE"},
+            {id: 8, name: "POSITIVE (1+)"},
+            {id: 9, name: "POSITIVE (2+)"},
+            {id: 7, name: "POSITIVE (3+)"},
+            {id: 11, name: "POSITIVE for AFB"},
+            {id: 3, name: "SCANTY"},
+            {id: 10, name: "MYCOBACTERIUM OTHER THAN TUBERCULOSIS (228)"}
+        ];
+
        const CULTURE_RESULT_URL = "/openmrs/ws/rest/v1/cultureresult";
 
        const CULTURE_RESULT_FORM = "Culture Result Form";

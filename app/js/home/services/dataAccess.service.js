@@ -8,7 +8,7 @@ export default function dataAccessService($http, $state) {
 
     function create(url, data, formName, patientDetails) {
         if (serverIsAvailable()) {
-            makePost(url, data);
+            makePost(url, data, formName);
         } else {
             saveRequestOffline(url, data, formName, patientDetails);
         }
@@ -18,9 +18,9 @@ export default function dataAccessService($http, $state) {
         return navigator.onLine;
     }
 
-    function makePost(url, data) {
+    function makePost(url, data, formName) {
         $http.post(url, JSON.stringify(data)).then(res => {
-            return res.data;
+            $state.go("/openmrs/module/htmlformentry/htmlFormEntry.form?encounterId=" + res.data.encounter.uuid);
         })
     }
 
