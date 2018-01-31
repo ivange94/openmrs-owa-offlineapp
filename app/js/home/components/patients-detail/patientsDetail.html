@@ -46,18 +46,18 @@
                         <table>
                             <tr>
                                 <td>Date: </td>
-                                <td><input type="date"> (dd/mm/yyyy)</td>
+                                <td><input type="date" ng-model="vm.hivtestresult.encounterDate"> (dd/mm/yyyy)</td>
                             </tr>
                             <tr>
                                 <td>Location: </td>
-                                <td><select name="location" style="width: 170px;">
-                                    <option value="unknown">Unknown</option>
+                                <td><select name="location" ng-model="vm.hivtestresult.encounterLocation">
+                                    <option ng-repeat="location in vm.locations" value="{{location.uuid}}">{{location.display}}</option>
                                 </select></td>
                             </tr>
                             <tr>
                                 <td>Provider</td>
-                                <td><select name="provider" style="width: 170px;">
-                                    <option value="dr_smith">Dr Smith</option>
+                                <td><select name="provider" ng-model="vm.hivtestresult.encounterProvider">
+                                    <option ng-repeat="provider in vm.providers" value="{{provider.uuid}}">{{provider.person.display}}</option>
                                 </select></td>
                             </tr>
                         </table>
@@ -68,15 +68,25 @@
                     <div class="box-body">
                         <table>
                             <tr>
-                                <td><strong>Test 1:</strong> Result <select name="test_1" style="width: 170px;"></select> Date: <input type="date"> (dd/mm/yyyy)</td>
+                                <td><strong>Test 1:</strong> Result
+                                    <select name="result1" ng-model="vm.hivtestresult.result1">
+                                        <option value="4">NEGATIVE</option>
+                                        <option value="5">POSITIVE</option>
+                                    </select>
+                                    Date: <input type="date" ng-model="vm.hivtestresult.date1"> (dd/mm/yyyy)</td>
                             </tr>
                             <tr>
-                                <td><strong>Test 2:</strong> Result <select name="test_2" id="" style="width: 170px;"></select> Date: <input type="date"> (dd/mm/yyyy)</td>
+                                <td><strong>Test 2:</strong> Result
+                                    <select name="result2" id="" ng-model="vm.hivtestresult.result2">
+                                        <option value="4">NEGATIVE</option>
+                                        <option value="5">POSITIVE</option>
+                                    </select>
+                                    Date: <input type="date" ng-model="vm.hivtestresult.date2"> (dd/mm/yyyy)</td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <button ng-click="vm.cancelFormEntry()">Cancel</button><button>Enter Form</button>
+                <button ng-click="vm.cancelFormEntry()">Cancel</button><button ng-click="vm.saveHivTestResult()">Enter Form</button>
             </div>
             <div class="dst-results" id="2" style="display: none">
                 <h2>DST Results</h2>

@@ -23,6 +23,10 @@ class PatientsDetailComponent {
            patient: vm.patient.uuid
        };
 
+        vm.hivtestresult = {
+            patient: vm.patient.uuid
+        }
+
        vm.cultureresult.patient = vm.patient.uuid;
 
        vm.locations = [];
@@ -77,7 +81,11 @@ class PatientsDetailComponent {
 
        const SMEAR_RESULT_URL = "/openmrs/ws/rest/v1/smearresult";
 
-       const SMEAR_RESULT_FORM = "Smear Result Form"
+       const SMEAR_RESULT_FORM = "Smear Result Form";
+
+       const HIV_TEST_RESULT_URL = "/openmrs/ws/rest/v1/hivtestresult";
+
+       const HIV_TEST_RESULT_FORM = "HIV Test Result Form";
 
        vm.$onInit = function () {
            $http.get("/openmrs/ws/rest/v1/location").then(res => {
@@ -141,6 +149,10 @@ class PatientsDetailComponent {
         vm.saveSmearResult = () => {
             vm.smearresult.patient = vm.patient.uuid;
             dataAccessService.create(SMEAR_RESULT_URL, vm.smearresult, SMEAR_RESULT_FORM, {patientName: getPatientName()});
+        }
+
+        vm.saveHivTestResult = () => {
+            dataAccessService.create(HIV_TEST_RESULT_URL, vm.hivtestresult, HIV_TEST_RESULT_FORM, {patientName: getPatientName()})
         }
 
         function forceSetPatientOnCultureResultObject() {
