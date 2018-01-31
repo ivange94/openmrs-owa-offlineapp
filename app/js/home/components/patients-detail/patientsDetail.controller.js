@@ -25,7 +25,9 @@ class PatientsDetailComponent {
 
         vm.hivtestresult = {
             patient: vm.patient.uuid
-        }
+        };
+
+        vm.hivtbinformation = {};
 
        vm.cultureresult.patient = vm.patient.uuid;
 
@@ -118,6 +120,8 @@ class PatientsDetailComponent {
            // Show the current tab, and add an "active" class to the button that opened the tab
            document.getElementById(tabName).style.display = "block";
            vm.activeMenu = tabName;
+
+           vm.hivtbinformation.patient = vm.patient.uuid;
        };
 
         var getSelectedFormId = function() {
@@ -154,6 +158,10 @@ class PatientsDetailComponent {
         vm.saveHivTestResult = () => {
             dataAccessService.create(HIV_TEST_RESULT_URL, vm.hivtestresult, HIV_TEST_RESULT_FORM, {patientName: getPatientName()})
         }
+
+        vm.saveTbHivInformation = () => {
+            dataAccessService.create(TB_HIV_INFORMATION_URL, vm.hivtbinformation, TB_HIV_INFORMATION_FORM, {patientName: getPatientName()})
+        };
 
         function forceSetPatientOnCultureResultObject() {
             vm.cultureresult.patient = vm.patient.uuid;
