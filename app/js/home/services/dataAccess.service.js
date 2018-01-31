@@ -1,6 +1,6 @@
 import localforage from 'localforage';
 
-export default function dataAccessService($http, $state) {
+export default function dataAccessService($http, $window) {
     var service = {
         create: create
     };
@@ -20,7 +20,7 @@ export default function dataAccessService($http, $state) {
 
     function makePost(url, data, formName) {
         $http.post(url, JSON.stringify(data)).then(res => {
-            $state.go("/openmrs/module/htmlformentry/htmlFormEntry.form?encounterId=" + res.data.encounter.uuid);
+            $window.location.href = "/openmrs/module/htmlformentry/htmlFormEntry.form?encounterId=" + res.data.encounter.uuid;
         })
     }
 

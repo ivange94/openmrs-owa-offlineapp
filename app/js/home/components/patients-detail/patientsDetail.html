@@ -138,21 +138,21 @@
                         <table>
                             <tr>
                                 <td>Date: </td>
-                                <td><input type="date"> (dd/mm/yyyy)</td>
+                                <td><input type="date" ng-model="vm.smearresult.encounterDate"> (dd/mm/yyyy)</td>
                             </tr>
                             <tr>
                                 <td>Location: </td>
                                 <td>
-                                    <select name="location" style="width: 170px">
-                                        <option value="unknown">Unknown</option>
+                                    <select name="location" ng-model="vm.smearresult.encounterLocation">
+                                        <option ng-repeat="location in vm.locations" value="{{location.uuid}}">{{location.display}}</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Captured By: </td>
                                 <td>
-                                    <select name="captured_by" style="width: 170px">
-                                        <option value="dr_smith">Dr Smith</option>
+                                    <select name="captured_by" ng-model="vm.smearresult.encounterProvider">
+                                        <option ng-repeat="provider in vm.providers" value="{{provider.uuid}}">{{provider.person.display}}</option>
                                     </select>
                                 </td>
                             </tr>
@@ -165,36 +165,36 @@
                         <table>
                             <tr>
                                 <td>Sample ID</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" ng-model="vm.smearresult.sampleId"></td>
                             </tr>
                             <tr>
                                 <td>Sample Type: </td>
                                 <td>
-                                    <select name="sample_type" style="width: 170px">
-
+                                    <select name="sample_type" ng-model="vm.smearresult.sampleType">
+                                        <option ng-repeat="sampleType in vm.smearResultSampleTypes" value="{{sampleType.id}}">{{sampleType.name}}</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Appearance: </td>
                                 <td>
-                                    <select name="appearance" style="width: 170px">
-
+                                    <select name="appearance" ng-model="vm.smearresult.appearance">
+                                        <option ng-repeat="appearance in vm.smearResultAppearances" value="{{appearance.id}}">{{appearance.name}}</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Result: </td>
                                 <td>
-                                    <select name="result" style="width: 170px">
-
+                                    <select name="result" ng-model="vm.smearresult.result">
+                                        <option ng-repeat="result in vm.tuberculosisSmearResults" value="{{result.id}}">{{result.name}}</option>
                                     </select>
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <button ng-click="vm.cancelFormEntry()">Cancel</button><input type="submit" value="Enter Form">
+                <button ng-click="vm.cancelFormEntry()">Cancel</button><input type="submit" value="Enter Form" ng-click="vm.saveSmearResult()">
             </div>
             <div class="tb-hiv-info" id="4" style="display: none">
                 <h2>TB/HIV Information</h2>

@@ -19,6 +19,10 @@ class PatientsDetailComponent {
 
        vm.cultureresult = {};
 
+       vm.smearresult = {
+           patient: vm.patient.uuid
+       };
+
        vm.cultureresult.patient = vm.patient.uuid;
 
        vm.locations = [];
@@ -37,9 +41,43 @@ class PatientsDetailComponent {
             {id: 10, name: "MYCOBACTERIUM OTHER THAN TUBERCULOSIS (228)"}
         ];
 
+        vm.smearResultSampleTypes = [
+            {id: 22, name: "CEREBROSPINAL FLUID"},
+            {id: 19, name: "GASTRIC FLUID/CONTENTS"},
+            {id: 23, name: "BRONCHIAL APIRATE"},
+            {id: 24, name: "URINE"},
+            {id: 20, name: "FECES"},
+            {id: 21, name: "PULMONARY TISSUE"},
+            {id: 15, name: "SPUTUM"},
+            {id: 17, name: "PULMONARY EFFUSION"},
+            {id: 16, name: "ARTICULAR FLUID"},
+            {id: 18, name: "PERITONEAL FLUID"}
+        ];
+
+        vm.tuberculosisSmearResults = [
+            {id: 5, name: "POSITIVE"},
+            {id: 6, name: "CONTAMINATED"},
+            {id: 3, name: "SCANTY"},
+            {id: 9, name: "POSITIVE (2+)"},
+            {id: 7, name: "POSITIVE (3+)"},
+            {id: 8, name: "POSITIVE (1+)"},
+            {id: 4, name: "NEGATIVE"},
+            {id: 30, name: "UNSATISFACTORY SAMPLE"}
+        ];
+
+        vm.smearResultAppearances = [
+            {id: 26, name: "SALIVA"},
+            {id: 27, name: "BLOODY"},
+            {id: 28, name: "MUCOPURULENT"}
+        ];
+
        const CULTURE_RESULT_URL = "/openmrs/ws/rest/v1/cultureresult";
 
        const CULTURE_RESULT_FORM = "Culture Result Form";
+
+       const SMEAR_RESULT_URL = "/openmrs/ws/rest/v1/smearresult";
+
+       const SMEAR_RESULT_FORM = "Smear Result Form"
 
        vm.$onInit = function () {
            $http.get("/openmrs/ws/rest/v1/location").then(res => {
@@ -98,6 +136,11 @@ class PatientsDetailComponent {
         vm.saveCultureResult = () => {
             forceSetPatientOnCultureResultObject();
             dataAccessService.create(CULTURE_RESULT_URL, vm.cultureresult, CULTURE_RESULT_FORM, {patientName: getPatientName()});
+        }
+
+        vm.saveSmearResult = () => {
+            vm.smearresult.patient = vm.patient.uuid;
+            dataAccessService.create(SMEAR_RESULT_URL, vm.smearresult, SMEAR_RESULT_FORM, {patientName: getPatientName()});
         }
 
         function forceSetPatientOnCultureResultObject() {
